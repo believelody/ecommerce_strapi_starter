@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "shippingaddress",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "address": {
+      "type": "string"
+    },
+    "address2": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "user": {
+      "model": "user",
+      "via": "shippingaddresses",
+      "plugin": "users-permissions"
+    }
+  }
+}

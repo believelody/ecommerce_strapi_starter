@@ -1,0 +1,34 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "orderstatus",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "payment_status": {
+      "enum": [
+        "paid",
+        "refund"
+      ],
+      "type": "enumeration"
+    },
+    "shipping_status": {
+      "enum": [
+        "processing",
+        "ongoing",
+        "success",
+        "failed",
+        "returned"
+      ],
+      "type": "enumeration"
+    },
+    "order": {
+      "model": "order",
+      "via": "orderstatus"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/billingaddresses",
+      "handler": "Billingaddress.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/billingaddresses/count",
+      "handler": "Billingaddress.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/billingaddresses/:_id",
+      "handler": "Billingaddress.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/billingaddresses",
+      "handler": "Billingaddress.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/billingaddresses/:_id",
+      "handler": "Billingaddress.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/billingaddresses/:_id",
+      "handler": "Billingaddress.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

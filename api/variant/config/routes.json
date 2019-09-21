@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/variants",
+      "handler": "Variant.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/variants/count",
+      "handler": "Variant.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/variants/:_id",
+      "handler": "Variant.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/variants",
+      "handler": "Variant.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/variants/:_id",
+      "handler": "Variant.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/variants/:_id",
+      "handler": "Variant.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

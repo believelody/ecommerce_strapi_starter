@@ -1,0 +1,32 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "order",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "total": {
+      "type": "decimal",
+      "max": 20
+    },
+    "num_order": {
+      "type": "string"
+    },
+    "items": {
+      "type": "json"
+    },
+    "user": {
+      "model": "user",
+      "via": "orders",
+      "plugin": "users-permissions"
+    },
+    "orderstatus": {
+      "model": "orderstatus",
+      "via": "order"
+    }
+  }
+}

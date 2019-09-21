@@ -1,0 +1,29 @@
+{
+  "connection": "default",
+  "collectionName": "profile",
+  "info": {
+    "name": "profile",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "birthday": {
+      "type": "date"
+    },
+    "user": {
+      "model": "user",
+      "via": "profile",
+      "plugin": "users-permissions"
+    }
+  }
+}

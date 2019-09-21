@@ -1,0 +1,20 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "host": "cluster0-gsyvw.mongodb.net",
+        "port": 27017,
+        "database": "ecommerce_strapi_starter",
+        "username": "admin",
+        "password": "N5iCdQLoVTD9Tbe0",
+        "srv": true
+      },
+      "options": {
+        "ssl": true
+      }
+    }
+  }
+}
