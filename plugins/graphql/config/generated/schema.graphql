@@ -142,6 +142,14 @@ type createShippingaddressPayload {
   shippingaddress: Shippingaddress
 }
 
+input createSkuInput {
+  data: SkuInput
+}
+
+type createSkuPayload {
+  sku: Sku
+}
+
 input createUserInput {
   data: UserInput
 }
@@ -217,6 +225,14 @@ input deleteShippingaddressInput {
 
 type deleteShippingaddressPayload {
   shippingaddress: Shippingaddress
+}
+
+input deleteSkuInput {
+  where: InputID
+}
+
+type deleteSkuPayload {
+  sku: Sku
 }
 
 input deleteUserInput {
@@ -301,6 +317,12 @@ input editShippingaddressInput {
   user: ID
 }
 
+input editSkuInput {
+  unit: Int
+  product: ID
+  variant: ID
+}
+
 input editUserInput {
   username: String
   email: String
@@ -321,6 +343,9 @@ input editVariantInput {
   name: String
   image: ID
   product: ID
+  sku: ID
+  label: ENUM_VARIANT_LABEL
+  dimension: String
 }
 
 enum ENUM_ORDERSTATUS_PAYMENT_STATUS {
@@ -334,6 +359,11 @@ enum ENUM_ORDERSTATUS_SHIPPING_STATUS {
   success
   failed
   returned
+}
+
+enum ENUM_VARIANT_LABEL {
+  color
+  size
 }
 
 input FileInput {
@@ -361,7 +391,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Billingaddress | createBillingaddressPayload | updateBillingaddressPayload | deleteBillingaddressPayload | BillingaddressConnection | BillingaddressAggregator | BillingaddressGroupBy | BillingaddressConnection_id | BillingaddressConnectionId | BillingaddressConnectionCreatedAt | BillingaddressConnectionUpdatedAt | BillingaddressConnectionAddress | BillingaddressConnectionAddress2 | BillingaddressConnectionZip | BillingaddressConnectionCity | BillingaddressConnectionUser | Order | createOrderPayload | updateOrderPayload | deleteOrderPayload | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnection_id | OrderConnectionId | OrderConnectionCreatedAt | OrderConnectionUpdatedAt | OrderConnectionTotal | OrderConnectionNum_order | OrderConnectionItems | OrderConnectionUser | OrderConnectionOrderstatus | Orderstatus | createOrderstatusPayload | updateOrderstatusPayload | deleteOrderstatusPayload | OrderstatusConnection | OrderstatusAggregator | OrderstatusGroupBy | OrderstatusConnection_id | OrderstatusConnectionId | OrderstatusConnectionCreatedAt | OrderstatusConnectionUpdatedAt | OrderstatusConnectionPayment_status | OrderstatusConnectionShipping_status | OrderstatusConnectionOrder | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnection_id | ProductConnectionId | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionId | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionUsername | ProfileConnectionImage | ProfileConnectionBirthday | ProfileConnectionUser | Shippingaddress | createShippingaddressPayload | updateShippingaddressPayload | deleteShippingaddressPayload | ShippingaddressConnection | ShippingaddressAggregator | ShippingaddressGroupBy | ShippingaddressConnection_id | ShippingaddressConnectionId | ShippingaddressConnectionCreatedAt | ShippingaddressConnectionUpdatedAt | ShippingaddressConnectionAddress | ShippingaddressConnectionAddress2 | ShippingaddressConnectionZip | ShippingaddressConnectionCity | ShippingaddressConnectionUser | Variant | createVariantPayload | updateVariantPayload | deleteVariantPayload | VariantConnection | VariantAggregator | VariantGroupBy | VariantConnection_id | VariantConnectionId | VariantConnectionCreatedAt | VariantConnectionUpdatedAt | VariantConnectionName | VariantConnectionImage | VariantConnectionProduct | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionEmailConfirm | UsersPermissionsUserConnectionProfile
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Billingaddress | createBillingaddressPayload | updateBillingaddressPayload | deleteBillingaddressPayload | BillingaddressConnection | BillingaddressAggregator | BillingaddressGroupBy | BillingaddressConnection_id | BillingaddressConnectionId | BillingaddressConnectionCreatedAt | BillingaddressConnectionUpdatedAt | BillingaddressConnectionAddress | BillingaddressConnectionAddress2 | BillingaddressConnectionZip | BillingaddressConnectionCity | BillingaddressConnectionUser | Order | createOrderPayload | updateOrderPayload | deleteOrderPayload | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnection_id | OrderConnectionId | OrderConnectionCreatedAt | OrderConnectionUpdatedAt | OrderConnectionTotal | OrderConnectionNum_order | OrderConnectionItems | OrderConnectionUser | OrderConnectionOrderstatus | Orderstatus | createOrderstatusPayload | updateOrderstatusPayload | deleteOrderstatusPayload | OrderstatusConnection | OrderstatusAggregator | OrderstatusGroupBy | OrderstatusConnection_id | OrderstatusConnectionId | OrderstatusConnectionCreatedAt | OrderstatusConnectionUpdatedAt | OrderstatusConnectionPayment_status | OrderstatusConnectionShipping_status | OrderstatusConnectionOrder | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnection_id | ProductConnectionId | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionId | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionUsername | ProfileConnectionImage | ProfileConnectionBirthday | ProfileConnectionUser | Shippingaddress | createShippingaddressPayload | updateShippingaddressPayload | deleteShippingaddressPayload | ShippingaddressConnection | ShippingaddressAggregator | ShippingaddressGroupBy | ShippingaddressConnection_id | ShippingaddressConnectionId | ShippingaddressConnectionCreatedAt | ShippingaddressConnectionUpdatedAt | ShippingaddressConnectionAddress | ShippingaddressConnectionAddress2 | ShippingaddressConnectionZip | ShippingaddressConnectionCity | ShippingaddressConnectionUser | Sku | createSkuPayload | updateSkuPayload | deleteSkuPayload | SkuConnection | SkuAggregator | SkuAggregatorSum | SkuAggregatorAvg | SkuAggregatorMin | SkuAggregatorMax | SkuGroupBy | SkuConnection_id | SkuConnectionId | SkuConnectionCreatedAt | SkuConnectionUpdatedAt | SkuConnectionUnit | SkuConnectionProduct | SkuConnectionVariant | Variant | createVariantPayload | updateVariantPayload | deleteVariantPayload | VariantConnection | VariantAggregator | VariantGroupBy | VariantConnection_id | VariantConnectionId | VariantConnectionCreatedAt | VariantConnectionUpdatedAt | VariantConnectionName | VariantConnectionImage | VariantConnectionProduct | VariantConnectionSku | VariantConnectionLabel | VariantConnectionDimension | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionEmailConfirm | UsersPermissionsUserConnectionProfile
 
 type Mutation {
   createBillingaddress(input: createBillingaddressInput): createBillingaddressPayload
@@ -382,6 +412,9 @@ type Mutation {
   createShippingaddress(input: createShippingaddressInput): createShippingaddressPayload
   updateShippingaddress(input: updateShippingaddressInput): updateShippingaddressPayload
   deleteShippingaddress(input: deleteShippingaddressInput): deleteShippingaddressPayload
+  createSku(input: createSkuInput): createSkuPayload
+  updateSku(input: updateSkuInput): updateSkuPayload
+  deleteSku(input: deleteSkuInput): deleteSkuPayload
   createVariant(input: createVariantInput): createVariantPayload
   updateVariant(input: updateVariantInput): updateVariantPayload
   deleteVariant(input: deleteVariantInput): deleteVariantPayload
@@ -781,6 +814,9 @@ type Query {
   shippingaddress(id: ID!): Shippingaddress
   shippingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Shippingaddress]
   shippingaddressesConnection(sort: String, limit: Int, start: Int, where: JSON): ShippingaddressConnection
+  sku(id: ID!): Sku
+  skus(sort: String, limit: Int, start: Int, where: JSON): [Sku]
+  skusConnection(sort: String, limit: Int, start: Int, where: JSON): SkuConnection
   variant(id: ID!): Variant
   variants(sort: String, limit: Int, start: Int, where: JSON): [Variant]
   variantsConnection(sort: String, limit: Int, start: Int, where: JSON): VariantConnection
@@ -895,6 +931,98 @@ input ShippingaddressInput {
   user: ID
 }
 
+type Sku {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  unit: Int
+  product: Product
+  variant: Variant
+}
+
+type SkuAggregator {
+  count: Int
+  totalCount: Int
+  sum: SkuAggregatorSum
+  avg: SkuAggregatorAvg
+  min: SkuAggregatorMin
+  max: SkuAggregatorMax
+}
+
+type SkuAggregatorAvg {
+  unit: Float
+}
+
+type SkuAggregatorMax {
+  unit: Float
+}
+
+type SkuAggregatorMin {
+  unit: Float
+}
+
+type SkuAggregatorSum {
+  unit: Float
+}
+
+type SkuConnection {
+  values: [Sku]
+  groupBy: SkuGroupBy
+  aggregate: SkuAggregator
+}
+
+type SkuConnection_id {
+  key: ID
+  connection: SkuConnection
+}
+
+type SkuConnectionCreatedAt {
+  key: DateTime
+  connection: SkuConnection
+}
+
+type SkuConnectionId {
+  key: ID
+  connection: SkuConnection
+}
+
+type SkuConnectionProduct {
+  key: ID
+  connection: SkuConnection
+}
+
+type SkuConnectionUnit {
+  key: Int
+  connection: SkuConnection
+}
+
+type SkuConnectionUpdatedAt {
+  key: DateTime
+  connection: SkuConnection
+}
+
+type SkuConnectionVariant {
+  key: ID
+  connection: SkuConnection
+}
+
+type SkuGroupBy {
+  _id: [SkuConnection_id]
+  id: [SkuConnectionId]
+  createdAt: [SkuConnectionCreatedAt]
+  updatedAt: [SkuConnectionUpdatedAt]
+  unit: [SkuConnectionUnit]
+  product: [SkuConnectionProduct]
+  variant: [SkuConnectionVariant]
+}
+
+input SkuInput {
+  unit: Int
+  product: ID
+  variant: ID
+}
+
 input updateBillingaddressInput {
   where: InputID
   data: editBillingaddressInput
@@ -956,6 +1084,15 @@ input updateShippingaddressInput {
 
 type updateShippingaddressPayload {
   shippingaddress: Shippingaddress
+}
+
+input updateSkuInput {
+  where: InputID
+  data: editSkuInput
+}
+
+type updateSkuPayload {
+  sku: Sku
 }
 
 input updateUserInput {
@@ -1283,6 +1420,9 @@ type Variant {
   name: String
   image: UploadFile
   product: Product
+  sku: Sku
+  label: ENUM_VARIANT_LABEL
+  dimension: String
 }
 
 type VariantAggregator {
@@ -1306,6 +1446,11 @@ type VariantConnectionCreatedAt {
   connection: VariantConnection
 }
 
+type VariantConnectionDimension {
+  key: String
+  connection: VariantConnection
+}
+
 type VariantConnectionId {
   key: ID
   connection: VariantConnection
@@ -1316,12 +1461,22 @@ type VariantConnectionImage {
   connection: VariantConnection
 }
 
+type VariantConnectionLabel {
+  key: String
+  connection: VariantConnection
+}
+
 type VariantConnectionName {
   key: String
   connection: VariantConnection
 }
 
 type VariantConnectionProduct {
+  key: ID
+  connection: VariantConnection
+}
+
+type VariantConnectionSku {
   key: ID
   connection: VariantConnection
 }
@@ -1339,10 +1494,16 @@ type VariantGroupBy {
   name: [VariantConnectionName]
   image: [VariantConnectionImage]
   product: [VariantConnectionProduct]
+  sku: [VariantConnectionSku]
+  label: [VariantConnectionLabel]
+  dimension: [VariantConnectionDimension]
 }
 
 input VariantInput {
   name: String
   image: ID
   product: ID
+  sku: ID
+  label: ENUM_VARIANT_LABEL
+  dimension: String
 }

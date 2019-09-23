@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "sku",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "unit": {
+      "type": "integer"
+    },
+    "product": {
+      "model": "product"
+    },
+    "variant": {
+      "model": "variant",
+      "via": "sku"
+    }
+  }
+}

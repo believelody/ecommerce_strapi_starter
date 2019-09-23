@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "variant",
   "info": {
     "name": "variant",
     "description": ""
@@ -20,6 +20,20 @@
     "product": {
       "model": "product",
       "via": "variants"
+    },
+    "sku": {
+      "model": "sku",
+      "via": "variant"
+    },
+    "label": {
+      "enum": [
+        "color",
+        "size"
+      ],
+      "type": "enumeration"
+    },
+    "dimension": {
+      "type": "string"
     }
   }
 }
