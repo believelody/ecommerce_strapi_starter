@@ -26,6 +26,14 @@
     "variants": {
       "collection": "variant",
       "via": "product"
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "products"
+    },
+    "categories": {
+      "collection": "category",
+      "via": "products"
     }
   }
 }
