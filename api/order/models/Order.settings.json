@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "order",
   "info": {
     "name": "order",
     "description": ""
@@ -9,7 +9,7 @@
     "timestamps": true
   },
   "attributes": {
-    "total": {
+    "amount": {
       "type": "decimal",
       "max": 20
     },
@@ -19,10 +19,9 @@
     "items": {
       "type": "json"
     },
-    "user": {
-      "model": "user",
-      "via": "orders",
-      "plugin": "users-permissions"
+    "profile": {
+      "model": "profile",
+      "via": "orders"
     },
     "orderstatus": {
       "model": "orderstatus",

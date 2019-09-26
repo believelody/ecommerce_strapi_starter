@@ -56,18 +56,6 @@
     "profile": {
       "model": "profile",
       "via": "user"
-    },
-    "shippingaddresses": {
-      "collection": "shippingaddress",
-      "via": "user"
-    },
-    "orders": {
-      "collection": "order",
-      "via": "user"
-    },
-    "billingaddresses": {
-      "collection": "billingaddress",
-      "via": "user"
     }
   },
   "collectionName": "users-permissions_user"

@@ -24,6 +24,18 @@
       "model": "user",
       "via": "profile",
       "plugin": "users-permissions"
+    },
+    "shippingaddresses": {
+      "collection": "shippingaddress",
+      "via": "profile"
+    },
+    "billingaddresses": {
+      "collection": "billingaddress",
+      "via": "profile"
+    },
+    "orders": {
+      "collection": "order",
+      "via": "profile"
     }
   }
 }

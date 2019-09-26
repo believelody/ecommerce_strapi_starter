@@ -7,7 +7,7 @@ type Billingaddress {
   address2: String
   zip: String
   city: String
-  user: UsersPermissionsUser
+  profile: Profile
 }
 
 type BillingaddressAggregator {
@@ -51,13 +51,13 @@ type BillingaddressConnectionId {
   connection: BillingaddressConnection
 }
 
-type BillingaddressConnectionUpdatedAt {
-  key: DateTime
+type BillingaddressConnectionProfile {
+  key: ID
   connection: BillingaddressConnection
 }
 
-type BillingaddressConnectionUser {
-  key: ID
+type BillingaddressConnectionUpdatedAt {
+  key: DateTime
   connection: BillingaddressConnection
 }
 
@@ -75,7 +75,7 @@ type BillingaddressGroupBy {
   address2: [BillingaddressConnectionAddress2]
   zip: [BillingaddressConnectionZip]
   city: [BillingaddressConnectionCity]
-  user: [BillingaddressConnectionUser]
+  profile: [BillingaddressConnectionProfile]
 }
 
 input BillingaddressInput {
@@ -83,7 +83,7 @@ input BillingaddressInput {
   address2: String
   zip: String
   city: String
-  user: ID
+  profile: ID
 }
 
 type Category {
@@ -93,6 +93,7 @@ type Category {
   updatedAt: DateTime!
   name: String
   description: String
+  image: UploadFile
   products(sort: String, limit: Int, start: Int, where: JSON): [Product]
 }
 
@@ -127,6 +128,11 @@ type CategoryConnectionId {
   connection: CategoryConnection
 }
 
+type CategoryConnectionImage {
+  key: ID
+  connection: CategoryConnection
+}
+
 type CategoryConnectionName {
   key: String
   connection: CategoryConnection
@@ -144,12 +150,14 @@ type CategoryGroupBy {
   updatedAt: [CategoryConnectionUpdatedAt]
   name: [CategoryConnectionName]
   description: [CategoryConnectionDescription]
+  image: [CategoryConnectionImage]
 }
 
 input CategoryInput {
   name: String
   description: String
   products: [ID]
+  image: ID
 }
 
 input createBillingaddressInput {
@@ -354,13 +362,14 @@ input editBillingaddressInput {
   address2: String
   zip: String
   city: String
-  user: ID
+  profile: ID
 }
 
 input editCategoryInput {
   name: String
   description: String
   products: [ID]
+  image: ID
 }
 
 input editFileInput {
@@ -377,10 +386,10 @@ input editFileInput {
 }
 
 input editOrderInput {
-  total: Float
+  amount: Float
   num_order: String
   items: JSON
-  user: ID
+  profile: ID
   orderstatus: ID
 }
 
@@ -405,6 +414,9 @@ input editProfileInput {
   image: ID
   birthday: DateTime
   user: ID
+  shippingaddresses: [ID]
+  billingaddresses: [ID]
+  orders: [ID]
 }
 
 input editRoleInput {
@@ -420,7 +432,7 @@ input editShippingaddressInput {
   address2: String
   zip: String
   city: String
-  user: ID
+  profile: ID
 }
 
 input editSkuInput {
@@ -445,9 +457,6 @@ input editUserInput {
   role: ID
   emailConfirm: Boolean
   profile: ID
-  shippingaddresses: [ID]
-  orders: [ID]
-  billingaddresses: [ID]
 }
 
 input editVariantInput {
@@ -502,7 +511,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Billingaddress | createBillingaddressPayload | updateBillingaddressPayload | deleteBillingaddressPayload | BillingaddressConnection | BillingaddressAggregator | BillingaddressGroupBy | BillingaddressConnection_id | BillingaddressConnectionId | BillingaddressConnectionCreatedAt | BillingaddressConnectionUpdatedAt | BillingaddressConnectionAddress | BillingaddressConnectionAddress2 | BillingaddressConnectionZip | BillingaddressConnectionCity | BillingaddressConnectionUser | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionId | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionDescription | Order | createOrderPayload | updateOrderPayload | deleteOrderPayload | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnection_id | OrderConnectionId | OrderConnectionCreatedAt | OrderConnectionUpdatedAt | OrderConnectionTotal | OrderConnectionNum_order | OrderConnectionItems | OrderConnectionUser | OrderConnectionOrderstatus | Orderstatus | createOrderstatusPayload | updateOrderstatusPayload | deleteOrderstatusPayload | OrderstatusConnection | OrderstatusAggregator | OrderstatusGroupBy | OrderstatusConnection_id | OrderstatusConnectionId | OrderstatusConnectionCreatedAt | OrderstatusConnectionUpdatedAt | OrderstatusConnectionPayment_status | OrderstatusConnectionShipping_status | OrderstatusConnectionOrder | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnection_id | ProductConnectionId | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionId | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionUsername | ProfileConnectionImage | ProfileConnectionBirthday | ProfileConnectionUser | Shippingaddress | createShippingaddressPayload | updateShippingaddressPayload | deleteShippingaddressPayload | ShippingaddressConnection | ShippingaddressAggregator | ShippingaddressGroupBy | ShippingaddressConnection_id | ShippingaddressConnectionId | ShippingaddressConnectionCreatedAt | ShippingaddressConnectionUpdatedAt | ShippingaddressConnectionAddress | ShippingaddressConnectionAddress2 | ShippingaddressConnectionZip | ShippingaddressConnectionCity | ShippingaddressConnectionUser | Sku | createSkuPayload | updateSkuPayload | deleteSkuPayload | SkuConnection | SkuAggregator | SkuAggregatorSum | SkuAggregatorAvg | SkuAggregatorMin | SkuAggregatorMax | SkuGroupBy | SkuConnection_id | SkuConnectionId | SkuConnectionCreatedAt | SkuConnectionUpdatedAt | SkuConnectionUnit | SkuConnectionProduct | SkuConnectionVariant | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionId | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | Variant | createVariantPayload | updateVariantPayload | deleteVariantPayload | VariantConnection | VariantAggregator | VariantGroupBy | VariantConnection_id | VariantConnectionId | VariantConnectionCreatedAt | VariantConnectionUpdatedAt | VariantConnectionName | VariantConnectionImage | VariantConnectionProduct | VariantConnectionSku | VariantConnectionLabel | VariantConnectionDimension | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionEmailConfirm | UsersPermissionsUserConnectionProfile
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Billingaddress | createBillingaddressPayload | updateBillingaddressPayload | deleteBillingaddressPayload | BillingaddressConnection | BillingaddressAggregator | BillingaddressGroupBy | BillingaddressConnection_id | BillingaddressConnectionId | BillingaddressConnectionCreatedAt | BillingaddressConnectionUpdatedAt | BillingaddressConnectionAddress | BillingaddressConnectionAddress2 | BillingaddressConnectionZip | BillingaddressConnectionCity | BillingaddressConnectionProfile | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionId | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionDescription | CategoryConnectionImage | Order | createOrderPayload | updateOrderPayload | deleteOrderPayload | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnection_id | OrderConnectionId | OrderConnectionCreatedAt | OrderConnectionUpdatedAt | OrderConnectionAmount | OrderConnectionNum_order | OrderConnectionItems | OrderConnectionProfile | OrderConnectionOrderstatus | Orderstatus | createOrderstatusPayload | updateOrderstatusPayload | deleteOrderstatusPayload | OrderstatusConnection | OrderstatusAggregator | OrderstatusGroupBy | OrderstatusConnection_id | OrderstatusConnectionId | OrderstatusConnectionCreatedAt | OrderstatusConnectionUpdatedAt | OrderstatusConnectionPayment_status | OrderstatusConnectionShipping_status | OrderstatusConnectionOrder | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnection_id | ProductConnectionId | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionId | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionUsername | ProfileConnectionImage | ProfileConnectionBirthday | ProfileConnectionUser | Shippingaddress | createShippingaddressPayload | updateShippingaddressPayload | deleteShippingaddressPayload | ShippingaddressConnection | ShippingaddressAggregator | ShippingaddressGroupBy | ShippingaddressConnection_id | ShippingaddressConnectionId | ShippingaddressConnectionCreatedAt | ShippingaddressConnectionUpdatedAt | ShippingaddressConnectionAddress | ShippingaddressConnectionAddress2 | ShippingaddressConnectionZip | ShippingaddressConnectionCity | ShippingaddressConnectionProfile | Sku | createSkuPayload | updateSkuPayload | deleteSkuPayload | SkuConnection | SkuAggregator | SkuAggregatorSum | SkuAggregatorAvg | SkuAggregatorMin | SkuAggregatorMax | SkuGroupBy | SkuConnection_id | SkuConnectionId | SkuConnectionCreatedAt | SkuConnectionUpdatedAt | SkuConnectionUnit | SkuConnectionProduct | SkuConnectionVariant | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionId | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | Variant | createVariantPayload | updateVariantPayload | deleteVariantPayload | VariantConnection | VariantAggregator | VariantGroupBy | VariantConnection_id | VariantConnectionId | VariantConnectionCreatedAt | VariantConnectionUpdatedAt | VariantConnectionName | VariantConnectionImage | VariantConnectionProduct | VariantConnectionSku | VariantConnectionLabel | VariantConnectionDimension | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionEmailConfirm | UsersPermissionsUserConnectionProfile
 
 type Mutation {
   createBillingaddress(input: createBillingaddressInput): createBillingaddressPayload
@@ -561,10 +570,10 @@ type Order {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
-  total: Float
+  amount: Float
   num_order: String
   items: JSON
-  user: UsersPermissionsUser
+  profile: Profile
   orderstatus: Orderstatus
 }
 
@@ -578,19 +587,19 @@ type OrderAggregator {
 }
 
 type OrderAggregatorAvg {
-  total: Float
+  amount: Float
 }
 
 type OrderAggregatorMax {
-  total: Float
+  amount: Float
 }
 
 type OrderAggregatorMin {
-  total: Float
+  amount: Float
 }
 
 type OrderAggregatorSum {
-  total: Float
+  amount: Float
 }
 
 type OrderConnection {
@@ -601,6 +610,11 @@ type OrderConnection {
 
 type OrderConnection_id {
   key: ID
+  connection: OrderConnection
+}
+
+type OrderConnectionAmount {
+  key: Float
   connection: OrderConnection
 }
 
@@ -629,8 +643,8 @@ type OrderConnectionOrderstatus {
   connection: OrderConnection
 }
 
-type OrderConnectionTotal {
-  key: Float
+type OrderConnectionProfile {
+  key: ID
   connection: OrderConnection
 }
 
@@ -639,28 +653,23 @@ type OrderConnectionUpdatedAt {
   connection: OrderConnection
 }
 
-type OrderConnectionUser {
-  key: ID
-  connection: OrderConnection
-}
-
 type OrderGroupBy {
   _id: [OrderConnection_id]
   id: [OrderConnectionId]
   createdAt: [OrderConnectionCreatedAt]
   updatedAt: [OrderConnectionUpdatedAt]
-  total: [OrderConnectionTotal]
+  amount: [OrderConnectionAmount]
   num_order: [OrderConnectionNum_order]
   items: [OrderConnectionItems]
-  user: [OrderConnectionUser]
+  profile: [OrderConnectionProfile]
   orderstatus: [OrderConnectionOrderstatus]
 }
 
 input OrderInput {
-  total: Float
+  amount: Float
   num_order: String
   items: JSON
-  user: ID
+  profile: ID
   orderstatus: ID
 }
 
@@ -845,6 +854,9 @@ type Profile {
   image: UploadFile
   birthday: DateTime
   user: UsersPermissionsUser
+  shippingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Shippingaddress]
+  billingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Billingaddress]
+  orders(sort: String, limit: Int, start: Int, where: JSON): [Order]
 }
 
 type ProfileAggregator {
@@ -914,6 +926,9 @@ input ProfileInput {
   image: ID
   birthday: DateTime
   user: ID
+  shippingaddresses: [ID]
+  billingaddresses: [ID]
+  orders: [ID]
 }
 
 type Query {
@@ -979,7 +994,7 @@ type Shippingaddress {
   address2: String
   zip: String
   city: String
-  user: UsersPermissionsUser
+  profile: Profile
 }
 
 type ShippingaddressAggregator {
@@ -1023,13 +1038,13 @@ type ShippingaddressConnectionId {
   connection: ShippingaddressConnection
 }
 
-type ShippingaddressConnectionUpdatedAt {
-  key: DateTime
+type ShippingaddressConnectionProfile {
+  key: ID
   connection: ShippingaddressConnection
 }
 
-type ShippingaddressConnectionUser {
-  key: ID
+type ShippingaddressConnectionUpdatedAt {
+  key: DateTime
   connection: ShippingaddressConnection
 }
 
@@ -1047,7 +1062,7 @@ type ShippingaddressGroupBy {
   address2: [ShippingaddressConnectionAddress2]
   zip: [ShippingaddressConnectionZip]
   city: [ShippingaddressConnectionCity]
-  user: [ShippingaddressConnectionUser]
+  profile: [ShippingaddressConnectionProfile]
 }
 
 input ShippingaddressInput {
@@ -1055,7 +1070,7 @@ input ShippingaddressInput {
   address2: String
   zip: String
   city: String
-  user: ID
+  profile: ID
 }
 
 type Sku {
@@ -1439,9 +1454,6 @@ input UserInput {
   role: ID
   emailConfirm: Boolean!
   profile: ID
-  shippingaddresses: [ID]
-  orders: [ID]
-  billingaddresses: [ID]
 }
 
 type UsersPermissionsMe {
@@ -1536,9 +1548,6 @@ type UsersPermissionsUser {
   role: UsersPermissionsRole
   emailConfirm: Boolean!
   profile: Profile
-  shippingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Shippingaddress]
-  orders(sort: String, limit: Int, start: Int, where: JSON): [Order]
-  billingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Billingaddress]
 }
 
 type UsersPermissionsUserAggregator {

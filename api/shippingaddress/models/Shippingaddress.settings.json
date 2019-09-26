@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "shippingaddress",
   "info": {
     "name": "shippingaddress",
     "description": ""
@@ -21,10 +21,9 @@
     "city": {
       "type": "string"
     },
-    "user": {
-      "model": "user",
-      "via": "shippingaddresses",
-      "plugin": "users-permissions"
+    "profile": {
+      "model": "profile",
+      "via": "shippingaddresses"
     }
   }
 }
