@@ -12,14 +12,10 @@
     "name": {
       "type": "string"
     },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload"
-    },
-    "product": {
-      "model": "product",
-      "via": "variants"
+    "products": {
+      "collection": "product",
+      "via": "variants",
+      "dominant": true
     },
     "sku": {
       "model": "sku",

@@ -25,7 +25,7 @@
     },
     "variants": {
       "collection": "variant",
-      "via": "product"
+      "via": "products"
     },
     "tags": {
       "collection": "tag",
