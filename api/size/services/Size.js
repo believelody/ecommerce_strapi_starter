@@ -1,9 +1,9 @@
 'use strict';
 
-/* global Variant */
+/* global Size */
 
 /**
- * Variant.js service
+ * Size.js service
  *
  * @description: A set of functions similar to controller's actions to avoid code duplication.
  */
@@ -15,44 +15,44 @@ const { convertRestQueryParams, buildQuery } = require('strapi-utils');
 module.exports = {
 
   /**
-   * Promise to fetch all variants.
+   * Promise to fetch all sizes.
    *
    * @return {Promise}
    */
 
   fetchAll: (params, populate) => {
     const filters = convertRestQueryParams(params);
-    const populateOpt = populate || Variant.associations
+    const populateOpt = populate || Size.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
 
     return buildQuery({
-      model: Variant,
+      model: Size,
       filters,
       populate: populateOpt,
     });
   },
 
   /**
-   * Promise to fetch a/an variant.
+   * Promise to fetch a/an size.
    *
    * @return {Promise}
    */
 
   fetch: (params) => {
     // Select field to populate.
-    const populate = Variant.associations
+    const populate = Size.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
-    return Variant
-      .findOne(_.pick(params, _.keys(Variant.schema.paths)))
+    return Size
+      .findOne(_.pick(params, _.keys(Size.schema.paths)))
       .populate(populate);
   },
 
   /**
-   * Promise to count variants.
+   * Promise to count sizes.
    *
    * @return {Promise}
    */
@@ -61,64 +61,64 @@ module.exports = {
     const filters = convertRestQueryParams(params);
 
     return buildQuery({
-      model: Variant,
+      model: Size,
       filters: { where: filters.where },
     })
       .count()
   },
 
   /**
-   * Promise to add a/an variant.
+   * Promise to add a/an size.
    *
    * @return {Promise}
    */
 
   add: async (values) => {
     // Extract values related to relational data.
-    const relations = _.pick(values, Variant.associations.map(ast => ast.alias));
-    const data = _.omit(values, Variant.associations.map(ast => ast.alias));
+    const relations = _.pick(values, Size.associations.map(ast => ast.alias));
+    const data = _.omit(values, Size.associations.map(ast => ast.alias));
 
     // Create entry with no-relational data.
-    const entry = await Variant.create(data);
+    const entry = await Size.create(data);
 
     // Create relational data and return the entry.
-    return Variant.updateRelations({ _id: entry.id, values: relations });
+    return Size.updateRelations({ _id: entry.id, values: relations });
   },
 
   /**
-   * Promise to edit a/an variant.
+   * Promise to edit a/an size.
    *
    * @return {Promise}
    */
 
   edit: async (params, values) => {
     // Extract values related to relational data.
-    const relations = _.pick(values, Variant.associations.map(a => a.alias));
-    const data = _.omit(values, Variant.associations.map(a => a.alias));
+    const relations = _.pick(values, Size.associations.map(a => a.alias));
+    const data = _.omit(values, Size.associations.map(a => a.alias));
 
     // Update entry with no-relational data.
-    const entry = await Variant.updateOne(params, data, { multi: true });
+    const entry = await Size.updateOne(params, data, { multi: true });
 
     // Update relational data and return the entry.
-    return Variant.updateRelations(Object.assign(params, { values: relations }));
+    return Size.updateRelations(Object.assign(params, { values: relations }));
   },
 
   /**
-   * Promise to remove a/an variant.
+   * Promise to remove a/an size.
    *
    * @return {Promise}
    */
 
   remove: async params => {
     // Select field to populate.
-    const populate = Variant.associations
+    const populate = Size.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
     // Note: To get the full response of Mongo, use the `remove()` method
     // or add spent the parameter `{ passRawResult: true }` as second argument.
-    const data = await Variant
+    const data = await Size
       .findOneAndRemove(params, {})
       .populate(populate);
 
@@ -127,7 +127,7 @@ module.exports = {
     }
 
     await Promise.all(
-      Variant.associations.map(async association => {
+      Size.associations.map(async association => {
         if (!association.via || !data._id || association.dominant) {
           return true;
         }
@@ -148,22 +148,22 @@ module.exports = {
   },
 
   /**
-   * Promise to search a/an variant.
+   * Promise to search a/an size.
    *
    * @return {Promise}
    */
 
   search: async (params) => {
     // Convert `params` object to filters compatible with Mongo.
-    const filters = strapi.utils.models.convertParams('variant', params);
+    const filters = strapi.utils.models.convertParams('size', params);
     // Select field to populate.
-    const populate = Variant.associations
+    const populate = Size.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias)
       .join(' ');
 
-    const $or = Object.keys(Variant.attributes).reduce((acc, curr) => {
-      switch (Variant.attributes[curr].type) {
+    const $or = Object.keys(Size.attributes).reduce((acc, curr) => {
+      switch (Size.attributes[curr].type) {
         case 'integer':
         case 'float':
         case 'decimal':
@@ -187,7 +187,7 @@ module.exports = {
       }
     }, []);
 
-    return Variant
+    return Size
       .find({ $or })
       .sort(filters.sort)
       .skip(filters.start)

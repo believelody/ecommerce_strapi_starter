@@ -1,8 +1,8 @@
 {
   "connection": "default",
-  "collectionName": "category",
+  "collectionName": "",
   "info": {
-    "name": "category",
+    "name": "color",
     "description": ""
   },
   "options": {
@@ -12,18 +12,14 @@
     "name": {
       "type": "string"
     },
-    "description": {
-      "type": "text"
-    },
     "products": {
       "collection": "product",
       "dominant": true,
-      "via": "categories"
+      "via": "colors"
     },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload"
+    "sku": {
+      "model": "sku",
+      "via": "color"
     }
   }
 }

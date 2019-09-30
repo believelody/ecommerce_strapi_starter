@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Lifecycle callbacks for the `Variant` model.
+ * Lifecycle callbacks for the `Size` model.
  */
 
 module.exports = {

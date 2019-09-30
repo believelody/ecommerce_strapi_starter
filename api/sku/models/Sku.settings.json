@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "sku",
   "info": {
     "name": "sku",
     "description": ""
@@ -15,8 +15,12 @@
     "product": {
       "model": "product"
     },
-    "variant": {
-      "model": "variant",
+    "color": {
+      "model": "color",
+      "via": "sku"
+    },
+    "size": {
+      "model": "size",
       "via": "sku"
     }
   }

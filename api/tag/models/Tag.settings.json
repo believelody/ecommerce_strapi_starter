@@ -14,8 +14,8 @@
     },
     "products": {
       "collection": "product",
-      "via": "tags",
-      "dominant": true
+      "dominant": true,
+      "via": "tags"
     }
   }
 }

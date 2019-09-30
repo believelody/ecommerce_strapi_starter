@@ -23,16 +23,20 @@
     "price": {
       "type": "decimal"
     },
-    "variants": {
-      "collection": "variant",
-      "via": "products"
-    },
     "tags": {
       "collection": "tag",
       "via": "products"
     },
     "categories": {
       "collection": "category",
+      "via": "products"
+    },
+    "colors": {
+      "collection": "color",
+      "via": "products"
+    },
+    "sizes": {
+      "collection": "size",
       "via": "products"
     }
   }
