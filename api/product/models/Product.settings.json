@@ -38,6 +38,10 @@
     "sizes": {
       "collection": "size",
       "via": "products"
+    },
+    "skus": {
+      "collection": "sku",
+      "via": "product"
     }
   }
 }

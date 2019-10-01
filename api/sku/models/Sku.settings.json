@@ -13,15 +13,16 @@
       "type": "integer"
     },
     "product": {
-      "model": "product"
+      "model": "product",
+      "via": "skus"
     },
     "color": {
       "model": "color",
-      "via": "sku"
+      "via": "skus"
     },
     "size": {
       "model": "size",
-      "via": "sku"
+      "via": "skus"
     }
   }
 }

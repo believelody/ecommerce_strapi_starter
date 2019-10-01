@@ -17,8 +17,8 @@
       "dominant": true,
       "via": "colors"
     },
-    "sku": {
-      "model": "sku",
+    "skus": {
+      "collection": "sku",
       "via": "color"
     }
   }
