@@ -5,7 +5,7 @@
       "connector": "strapi-hook-mongoose",
       "settings": {
         "client": "mongo",
-        "uri": "${process.env.DATABASE_URI || '127.0.0.1'}",
+        "uri": "${process.env.DATABASE_URI || ''}",        
         "srv": true
       },
       "options": {
