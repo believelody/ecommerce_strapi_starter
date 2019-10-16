@@ -5,15 +5,15 @@
       "connector": "strapi-hook-mongoose",
       "settings": {
         "client": "mongo",
-        "host": "ds335668.mlab.com",
-        "port": 35668,
-        "database": "heroku_pbkxl94t",
-        "username": "heroku_pbkxl94t",
-        "password": "7dnert3glv1emp7h1m68lrsmcl",
-        "srv": "false"
+        "host": "${process.env.DATABASE_HOST || '127.0.0.1'}",
+        "port": "${process.env.DATABASE_PORT || 27017}",
+        "database": "${process.env.DATABASE_NAME || 'strapi'}",
+        "username": "${process.env.DATABASE_USERNAME || ''}",
+        "password": "${process.env.DATABASE_PASSWORD || ''}",
+        "srv": "${process.env.DATABASE_SRV || false}"
       },
       "options": {
-        "ssl": true
+        "ssl": "${process.env.DATABASE_SSL || false}"
       }
     }
   }
