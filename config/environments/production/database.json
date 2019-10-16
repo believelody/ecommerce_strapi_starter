@@ -10,10 +10,10 @@
         "database": "${process.env.DATABASE_NAME || 'strapi'}",
         "username": "${process.env.DATABASE_USERNAME || ''}",
         "password": "${process.env.DATABASE_PASSWORD || ''}",
-        "srv": true
+        "srv": "${process.env.DATABASE_SRV || false}"
       },
       "options": {
-        "ssl": true
+        "ssl": "${process.env.DATABASE_SSL || false}"
       }
     }
   }
