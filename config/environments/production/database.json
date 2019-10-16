@@ -13,7 +13,7 @@
         "srv": true
       },
       "options": {
-        "ssl": "${process.env.DATABASE_SSL || false}"
+        "ssl": true
       }
     }
   }
