@@ -49,10 +49,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "emailConfirm": {
-      "required": true,
-      "type": "boolean"
-    },
     "profile": {
       "model": "profile",
       "via": "user"

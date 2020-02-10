@@ -276,6 +276,14 @@ type createProfilePayload {
   profile: Profile
 }
 
+input createReviewInput {
+  data: ReviewInput
+}
+
+type createReviewPayload {
+  review: Review
+}
+
 input createRoleInput {
   data: RoleInput
 }
@@ -385,6 +393,14 @@ type deleteProfilePayload {
   profile: Profile
 }
 
+input deleteReviewInput {
+  where: InputID
+}
+
+type deleteReviewPayload {
+  review: Review
+}
+
 input deleteRoleInput {
   where: InputID
 }
@@ -491,6 +507,7 @@ input editProductInput {
   colors: [ID]
   sizes: [ID]
   skus: [ID]
+  reviews: [ID]
 }
 
 input editProfileInput {
@@ -501,6 +518,23 @@ input editProfileInput {
   shippingaddresses: [ID]
   billingaddresses: [ID]
   orders: [ID]
+  emailConfirm: Boolean
+  code: String
+  firstname: String
+  lastname: String
+  isSubscribed: Boolean
+  badge: ENUM_PROFILE_BADGE
+  gender: ENUM_PROFILE_GENDER
+}
+
+input editReviewInput {
+  text: String
+  date: DateTime
+  rating: Int
+  author: String
+  thumbnails: [ID]
+  product: ID
+  order: String
 }
 
 input editRoleInput {
@@ -546,7 +580,6 @@ input editUserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
-  emailConfirm: Boolean
   profile: ID
 }
 
@@ -561,6 +594,18 @@ enum ENUM_ORDERSTATUS_SHIPPING_STATUS {
   success
   failed
   returned
+}
+
+enum ENUM_PROFILE_BADGE {
+  diamond
+  gold
+  silver
+  bronze
+}
+
+enum ENUM_PROFILE_GENDER {
+  male
+  female
 }
 
 input FileInput {
@@ -588,7 +633,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Billingaddress | createBillingaddressPayload | updateBillingaddressPayload | deleteBillingaddressPayload | BillingaddressConnection | BillingaddressAggregator | BillingaddressGroupBy | BillingaddressConnection_id | BillingaddressConnectionId | BillingaddressConnectionCreatedAt | BillingaddressConnectionUpdatedAt | BillingaddressConnectionAddress | BillingaddressConnectionAddress2 | BillingaddressConnectionZip | BillingaddressConnectionCity | BillingaddressConnectionProfile | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionId | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionDescription | CategoryConnectionImage | Color | createColorPayload | updateColorPayload | deleteColorPayload | ColorConnection | ColorAggregator | ColorGroupBy | ColorConnection_id | ColorConnectionId | ColorConnectionCreatedAt | ColorConnectionUpdatedAt | ColorConnectionName | Order | createOrderPayload | updateOrderPayload | deleteOrderPayload | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnection_id | OrderConnectionId | OrderConnectionCreatedAt | OrderConnectionUpdatedAt | OrderConnectionAmount | OrderConnectionNum_order | OrderConnectionItems | OrderConnectionProfile | OrderConnectionOrderstatus | Orderstatus | createOrderstatusPayload | updateOrderstatusPayload | deleteOrderstatusPayload | OrderstatusConnection | OrderstatusAggregator | OrderstatusGroupBy | OrderstatusConnection_id | OrderstatusConnectionId | OrderstatusConnectionCreatedAt | OrderstatusConnectionUpdatedAt | OrderstatusConnectionPayment_status | OrderstatusConnectionShipping_status | OrderstatusConnectionOrder | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnection_id | ProductConnectionId | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionId | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionUsername | ProfileConnectionImage | ProfileConnectionBirthday | ProfileConnectionUser | Shippingaddress | createShippingaddressPayload | updateShippingaddressPayload | deleteShippingaddressPayload | ShippingaddressConnection | ShippingaddressAggregator | ShippingaddressGroupBy | ShippingaddressConnection_id | ShippingaddressConnectionId | ShippingaddressConnectionCreatedAt | ShippingaddressConnectionUpdatedAt | ShippingaddressConnectionAddress | ShippingaddressConnectionAddress2 | ShippingaddressConnectionZip | ShippingaddressConnectionCity | ShippingaddressConnectionProfile | Size | createSizePayload | updateSizePayload | deleteSizePayload | SizeConnection | SizeAggregator | SizeGroupBy | SizeConnection_id | SizeConnectionId | SizeConnectionCreatedAt | SizeConnectionUpdatedAt | SizeConnectionName | Sku | createSkuPayload | updateSkuPayload | deleteSkuPayload | SkuConnection | SkuAggregator | SkuAggregatorSum | SkuAggregatorAvg | SkuAggregatorMin | SkuAggregatorMax | SkuGroupBy | SkuConnection_id | SkuConnectionId | SkuConnectionCreatedAt | SkuConnectionUpdatedAt | SkuConnectionUnit | SkuConnectionProduct | SkuConnectionColor | SkuConnectionSize | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionId | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionEmailConfirm | UsersPermissionsUserConnectionProfile
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Billingaddress | createBillingaddressPayload | updateBillingaddressPayload | deleteBillingaddressPayload | BillingaddressConnection | BillingaddressAggregator | BillingaddressGroupBy | BillingaddressConnection_id | BillingaddressConnectionId | BillingaddressConnectionCreatedAt | BillingaddressConnectionUpdatedAt | BillingaddressConnectionAddress | BillingaddressConnectionAddress2 | BillingaddressConnectionZip | BillingaddressConnectionCity | BillingaddressConnectionProfile | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionId | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionDescription | CategoryConnectionImage | Color | createColorPayload | updateColorPayload | deleteColorPayload | ColorConnection | ColorAggregator | ColorGroupBy | ColorConnection_id | ColorConnectionId | ColorConnectionCreatedAt | ColorConnectionUpdatedAt | ColorConnectionName | Order | createOrderPayload | updateOrderPayload | deleteOrderPayload | OrderConnection | OrderAggregator | OrderAggregatorSum | OrderAggregatorAvg | OrderAggregatorMin | OrderAggregatorMax | OrderGroupBy | OrderConnection_id | OrderConnectionId | OrderConnectionCreatedAt | OrderConnectionUpdatedAt | OrderConnectionAmount | OrderConnectionNum_order | OrderConnectionItems | OrderConnectionProfile | OrderConnectionOrderstatus | Orderstatus | createOrderstatusPayload | updateOrderstatusPayload | deleteOrderstatusPayload | OrderstatusConnection | OrderstatusAggregator | OrderstatusGroupBy | OrderstatusConnection_id | OrderstatusConnectionId | OrderstatusConnectionCreatedAt | OrderstatusConnectionUpdatedAt | OrderstatusConnectionPayment_status | OrderstatusConnectionShipping_status | OrderstatusConnectionOrder | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductAggregatorSum | ProductAggregatorAvg | ProductAggregatorMin | ProductAggregatorMax | ProductGroupBy | ProductConnection_id | ProductConnectionId | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionPrice | Profile | createProfilePayload | updateProfilePayload | deleteProfilePayload | ProfileConnection | ProfileAggregator | ProfileGroupBy | ProfileConnection_id | ProfileConnectionId | ProfileConnectionCreatedAt | ProfileConnectionUpdatedAt | ProfileConnectionUsername | ProfileConnectionImage | ProfileConnectionBirthday | ProfileConnectionUser | ProfileConnectionEmailConfirm | ProfileConnectionCode | ProfileConnectionFirstname | ProfileConnectionLastname | ProfileConnectionIsSubscribed | ProfileConnectionBadge | ProfileConnectionGender | Review | createReviewPayload | updateReviewPayload | deleteReviewPayload | ReviewConnection | ReviewAggregator | ReviewAggregatorSum | ReviewAggregatorAvg | ReviewAggregatorMin | ReviewAggregatorMax | ReviewGroupBy | ReviewConnection_id | ReviewConnectionId | ReviewConnectionCreatedAt | ReviewConnectionUpdatedAt | ReviewConnectionText | ReviewConnectionDate | ReviewConnectionRating | ReviewConnectionAuthor | ReviewConnectionProduct | ReviewConnectionOrder | Shippingaddress | createShippingaddressPayload | updateShippingaddressPayload | deleteShippingaddressPayload | ShippingaddressConnection | ShippingaddressAggregator | ShippingaddressGroupBy | ShippingaddressConnection_id | ShippingaddressConnectionId | ShippingaddressConnectionCreatedAt | ShippingaddressConnectionUpdatedAt | ShippingaddressConnectionAddress | ShippingaddressConnectionAddress2 | ShippingaddressConnectionZip | ShippingaddressConnectionCity | ShippingaddressConnectionProfile | Size | createSizePayload | updateSizePayload | deleteSizePayload | SizeConnection | SizeAggregator | SizeGroupBy | SizeConnection_id | SizeConnectionId | SizeConnectionCreatedAt | SizeConnectionUpdatedAt | SizeConnectionName | Sku | createSkuPayload | updateSkuPayload | deleteSkuPayload | SkuConnection | SkuAggregator | SkuAggregatorSum | SkuAggregatorAvg | SkuAggregatorMin | SkuAggregatorMax | SkuGroupBy | SkuConnection_id | SkuConnectionId | SkuConnectionCreatedAt | SkuConnectionUpdatedAt | SkuConnectionUnit | SkuConnectionProduct | SkuConnectionColor | SkuConnectionSize | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionId | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionProfile
 
 type Mutation {
   createBillingaddress(input: createBillingaddressInput): createBillingaddressPayload
@@ -612,6 +657,9 @@ type Mutation {
   createProfile(input: createProfileInput): createProfilePayload
   updateProfile(input: updateProfileInput): updateProfilePayload
   deleteProfile(input: deleteProfileInput): deleteProfilePayload
+  createReview(input: createReviewInput): createReviewPayload
+  updateReview(input: updateReviewInput): updateReviewPayload
+  deleteReview(input: deleteReviewInput): deleteReviewPayload
   createShippingaddress(input: createShippingaddressInput): createShippingaddressPayload
   updateShippingaddress(input: updateShippingaddressInput): updateShippingaddressPayload
   deleteShippingaddress(input: deleteShippingaddressInput): deleteShippingaddressPayload
@@ -839,6 +887,7 @@ type Product {
   colors(sort: String, limit: Int, start: Int, where: JSON): [Color]
   sizes(sort: String, limit: Int, start: Int, where: JSON): [Size]
   skus(sort: String, limit: Int, start: Int, where: JSON): [Sku]
+  reviews(sort: String, limit: Int, start: Int, where: JSON): [Review]
 }
 
 type ProductAggregator {
@@ -927,6 +976,7 @@ input ProductInput {
   colors: [ID]
   sizes: [ID]
   skus: [ID]
+  reviews: [ID]
 }
 
 type Profile {
@@ -938,6 +988,13 @@ type Profile {
   image: UploadFile
   birthday: DateTime
   user: UsersPermissionsUser
+  emailConfirm: Boolean
+  code: String
+  firstname: String
+  lastname: String
+  isSubscribed: Boolean
+  badge: ENUM_PROFILE_BADGE
+  gender: ENUM_PROFILE_GENDER
   shippingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Shippingaddress]
   billingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Billingaddress]
   orders(sort: String, limit: Int, start: Int, where: JSON): [Order]
@@ -959,13 +1016,38 @@ type ProfileConnection_id {
   connection: ProfileConnection
 }
 
+type ProfileConnectionBadge {
+  key: String
+  connection: ProfileConnection
+}
+
 type ProfileConnectionBirthday {
   key: DateTime
   connection: ProfileConnection
 }
 
+type ProfileConnectionCode {
+  key: String
+  connection: ProfileConnection
+}
+
 type ProfileConnectionCreatedAt {
   key: DateTime
+  connection: ProfileConnection
+}
+
+type ProfileConnectionEmailConfirm {
+  key: Boolean
+  connection: ProfileConnection
+}
+
+type ProfileConnectionFirstname {
+  key: String
+  connection: ProfileConnection
+}
+
+type ProfileConnectionGender {
+  key: String
   connection: ProfileConnection
 }
 
@@ -976,6 +1058,16 @@ type ProfileConnectionId {
 
 type ProfileConnectionImage {
   key: ID
+  connection: ProfileConnection
+}
+
+type ProfileConnectionIsSubscribed {
+  key: Boolean
+  connection: ProfileConnection
+}
+
+type ProfileConnectionLastname {
+  key: String
   connection: ProfileConnection
 }
 
@@ -1003,6 +1095,13 @@ type ProfileGroupBy {
   image: [ProfileConnectionImage]
   birthday: [ProfileConnectionBirthday]
   user: [ProfileConnectionUser]
+  emailConfirm: [ProfileConnectionEmailConfirm]
+  code: [ProfileConnectionCode]
+  firstname: [ProfileConnectionFirstname]
+  lastname: [ProfileConnectionLastname]
+  isSubscribed: [ProfileConnectionIsSubscribed]
+  badge: [ProfileConnectionBadge]
+  gender: [ProfileConnectionGender]
 }
 
 input ProfileInput {
@@ -1013,6 +1112,13 @@ input ProfileInput {
   shippingaddresses: [ID]
   billingaddresses: [ID]
   orders: [ID]
+  emailConfirm: Boolean
+  code: String
+  firstname: String
+  lastname: String
+  isSubscribed: Boolean
+  badge: ENUM_PROFILE_BADGE
+  gender: ENUM_PROFILE_GENDER
 }
 
 type Query {
@@ -1037,6 +1143,9 @@ type Query {
   profile(id: ID!): Profile
   profiles(sort: String, limit: Int, start: Int, where: JSON): [Profile]
   profilesConnection(sort: String, limit: Int, start: Int, where: JSON): ProfileConnection
+  review(id: ID!): Review
+  reviews(sort: String, limit: Int, start: Int, where: JSON): [Review]
+  reviewsConnection(sort: String, limit: Int, start: Int, where: JSON): ReviewConnection
   shippingaddress(id: ID!): Shippingaddress
   shippingaddresses(sort: String, limit: Int, start: Int, where: JSON): [Shippingaddress]
   shippingaddressesConnection(sort: String, limit: Int, start: Int, where: JSON): ShippingaddressConnection
@@ -1062,6 +1171,124 @@ type Query {
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
   usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
   me: UsersPermissionsMe
+}
+
+type Review {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  text: String
+  date: DateTime
+  rating: Int
+  author: String
+  product: Product
+  order: String
+  thumbnails(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type ReviewAggregator {
+  count: Int
+  totalCount: Int
+  sum: ReviewAggregatorSum
+  avg: ReviewAggregatorAvg
+  min: ReviewAggregatorMin
+  max: ReviewAggregatorMax
+}
+
+type ReviewAggregatorAvg {
+  rating: Float
+}
+
+type ReviewAggregatorMax {
+  rating: Float
+}
+
+type ReviewAggregatorMin {
+  rating: Float
+}
+
+type ReviewAggregatorSum {
+  rating: Float
+}
+
+type ReviewConnection {
+  values: [Review]
+  groupBy: ReviewGroupBy
+  aggregate: ReviewAggregator
+}
+
+type ReviewConnection_id {
+  key: ID
+  connection: ReviewConnection
+}
+
+type ReviewConnectionAuthor {
+  key: String
+  connection: ReviewConnection
+}
+
+type ReviewConnectionCreatedAt {
+  key: DateTime
+  connection: ReviewConnection
+}
+
+type ReviewConnectionDate {
+  key: DateTime
+  connection: ReviewConnection
+}
+
+type ReviewConnectionId {
+  key: ID
+  connection: ReviewConnection
+}
+
+type ReviewConnectionOrder {
+  key: String
+  connection: ReviewConnection
+}
+
+type ReviewConnectionProduct {
+  key: ID
+  connection: ReviewConnection
+}
+
+type ReviewConnectionRating {
+  key: Int
+  connection: ReviewConnection
+}
+
+type ReviewConnectionText {
+  key: String
+  connection: ReviewConnection
+}
+
+type ReviewConnectionUpdatedAt {
+  key: DateTime
+  connection: ReviewConnection
+}
+
+type ReviewGroupBy {
+  _id: [ReviewConnection_id]
+  id: [ReviewConnectionId]
+  createdAt: [ReviewConnectionCreatedAt]
+  updatedAt: [ReviewConnectionUpdatedAt]
+  text: [ReviewConnectionText]
+  date: [ReviewConnectionDate]
+  rating: [ReviewConnectionRating]
+  author: [ReviewConnectionAuthor]
+  product: [ReviewConnectionProduct]
+  order: [ReviewConnectionOrder]
+}
+
+input ReviewInput {
+  text: String
+  date: DateTime
+  rating: Int
+  author: String
+  thumbnails: [ID]
+  product: ID
+  order: String
 }
 
 input RoleInput {
@@ -1441,6 +1668,15 @@ type updateProfilePayload {
   profile: Profile
 }
 
+input updateReviewInput {
+  where: InputID
+  data: editReviewInput
+}
+
+type updateReviewPayload {
+  review: Review
+}
+
 input updateRoleInput {
   where: InputID
   data: editRoleInput
@@ -1616,7 +1852,6 @@ input UserInput {
   confirmed: Boolean
   blocked: Boolean
   role: ID
-  emailConfirm: Boolean!
   profile: ID
 }
 
@@ -1710,7 +1945,6 @@ type UsersPermissionsUser {
   confirmed: Boolean
   blocked: Boolean
   role: UsersPermissionsRole
-  emailConfirm: Boolean!
   profile: Profile
 }
 
@@ -1742,11 +1976,6 @@ type UsersPermissionsUserConnectionConfirmed {
 
 type UsersPermissionsUserConnectionEmail {
   key: String
-  connection: UsersPermissionsUserConnection
-}
-
-type UsersPermissionsUserConnectionEmailConfirm {
-  key: Boolean
   connection: UsersPermissionsUserConnection
 }
 
@@ -1784,6 +2013,5 @@ type UsersPermissionsUserGroupBy {
   confirmed: [UsersPermissionsUserConnectionConfirmed]
   blocked: [UsersPermissionsUserConnectionBlocked]
   role: [UsersPermissionsUserConnectionRole]
-  emailConfirm: [UsersPermissionsUserConnectionEmailConfirm]
   profile: [UsersPermissionsUserConnectionProfile]
 }

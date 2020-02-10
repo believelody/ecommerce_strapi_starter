@@ -1,0 +1,39 @@
+{
+  "connection": "default",
+  "collectionName": "review",
+  "info": {
+    "name": "review",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "text": {
+      "type": "text"
+    },
+    "date": {
+      "type": "date"
+    },
+    "rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5
+    },
+    "author": {
+      "type": "string"
+    },
+    "thumbnails": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "product": {
+      "model": "product",
+      "via": "reviews"
+    },
+    "order": {
+      "type": "string"
+    }
+  }
+}

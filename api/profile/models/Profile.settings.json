@@ -36,6 +36,39 @@
     "orders": {
       "collection": "order",
       "via": "profile"
+    },
+    "emailConfirm": {
+      "type": "boolean"
+    },
+    "code": {
+      "type": "string"
+    },
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "isSubscribed": {
+      "type": "boolean"
+    },
+    "badge": {
+      "enum": [
+        "diamond",
+        "gold",
+        "silver",
+        "bronze"
+      ],
+      "type": "enumeration",
+      "default": "bronze"
+    },
+    "gender": {
+      "default": "male",
+      "enum": [
+        "male",
+        "female"
+      ],
+      "type": "enumeration"
     }
   }
 }

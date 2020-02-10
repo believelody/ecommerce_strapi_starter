@@ -42,6 +42,10 @@
     "skus": {
       "collection": "sku",
       "via": "product"
+    },
+    "reviews": {
+      "collection": "review",
+      "via": "product"
     }
   }
 }
