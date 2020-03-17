@@ -12,14 +12,14 @@
     "name": {
       "type": "string"
     },
+    "skus": {
+      "collection": "sku",
+      "via": "color"
+    },
     "products": {
       "collection": "product",
       "dominant": true,
       "via": "colors"
-    },
-    "skus": {
-      "collection": "sku",
-      "via": "color"
     }
   }
 }

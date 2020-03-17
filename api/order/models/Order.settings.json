@@ -10,11 +10,7 @@
   },
   "attributes": {
     "amount": {
-      "type": "decimal",
-      "max": 20
-    },
-    "num_order": {
-      "type": "string"
+      "type": "decimal"
     },
     "items": {
       "type": "json"
@@ -23,9 +19,31 @@
       "model": "profile",
       "via": "orders"
     },
-    "orderstatus": {
-      "model": "orderstatus",
-      "via": "order"
+    "stripeToken": {
+      "type": "string"
+    },
+    "shippingStatus": {
+      "enum": [
+        "processing",
+        "ongoing",
+        "returned",
+        "delivered",
+        "received"
+      ],
+      "type": "enumeration"
+    },
+    "paymentStatus": {
+      "enum": [
+        "pending",
+        "cancel",
+        "paid",
+        "refund"
+      ],
+      "type": "enumeration"
+    },
+    "numOrder": {
+      "type": "integer",
+      "default": "100101"
     }
   }
 }

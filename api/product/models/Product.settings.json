@@ -46,6 +46,12 @@
     "reviews": {
       "collection": "review",
       "via": "product"
+    },
+    "isPromo": {
+      "type": "boolean"
+    },
+    "nbOrder": {
+      "type": "integer"
     }
   }
 }

@@ -69,6 +69,14 @@
         "female"
       ],
       "type": "enumeration"
+    },
+    "selectedShippingAddress": {
+      "type": "integer",
+      "default": "0"
+    },
+    "selectedBillingAddress": {
+      "type": "integer",
+      "default": "0"
     }
   }
 }

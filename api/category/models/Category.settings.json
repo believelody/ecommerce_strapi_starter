@@ -15,15 +15,15 @@
     "description": {
       "type": "text"
     },
-    "products": {
-      "collection": "product",
-      "dominant": true,
-      "via": "categories"
-    },
     "image": {
       "model": "file",
       "via": "related",
       "plugin": "upload"
+    },
+    "products": {
+      "collection": "product",
+      "dominant": true,
+      "via": "categories"
     }
   }
 }
