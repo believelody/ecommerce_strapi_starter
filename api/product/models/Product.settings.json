@@ -52,6 +52,10 @@
     },
     "nbOrder": {
       "type": "integer"
+    },
+    "newProduct": {
+      "default": true,
+      "type": "boolean"
     }
   }
 }
